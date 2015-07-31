@@ -1,0 +1,106 @@
+<div class="wrap center-block">
+    <div id="head">
+        <a class="logo pull-left" href="/"><i class="icon-tg-title"></i><?= _('logo_name') ?></a>
+
+        <div class="top-links pull-right">
+            <ul>
+                <li><a class="top-link" href="/logout"><?= _('menu_logout') ?></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content" class="clearfix">
+        <div class="wrap center-block">
+            <div id="dev_left_nav" class="pull-left">
+                <div class="dev_nav" style="top: 0px; margin-left: 0px; position: relative;">
+                    <div id="dev_page_narrow">
+
+                        <a id="dev_mlist_main" href="/settings" class="nav"><?= user.first_name ?>
+                            (<b>@<?= user.username ?></b>)</a>
+
+                        <div id="dev_mlist_submenu_main" style="">
+                            <a href="/settings?act=global" class="nav submenu">Главные настройки</a>
+                            <a href="/settings?act=modules" class="nav submenu">Модули</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- <?= _('') ?> -->
+            <div id="right_block" class="pull-right">
+
+                <div class="ctrl_videos_block page_block">
+                    <div class="app_edit_block_header">
+                        <div class="label clearfix">
+                            <div class="pull-left"><?= _('settings_text_private') ?></div>
+                        </div>
+                    </div>
+
+                    <form action="/api/users/private" method="post" class="form-horizontal center-block ">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label"><?= _('settings_text_name') ?></label>
+
+                            <div class="col-sm-5">
+                                <input type="text" name="name"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label"><?= _('settings_text_date') ?></label>
+
+                            <div class="col-sm-5">
+                                <input type="text" name="date"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label"><?= _('settings_text_city') ?></label>
+
+                            <div class="col-sm-5">
+                                <input type="text" name="city" onkeyup="getCity(this.value);"/>
+
+                                <div class="city-items">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label"><?= _('settings_text_lang') ?></label>
+
+                            <div class="col-sm-5">
+                                <select name="lang">
+                                    <option value="en"
+                                    <?= locale == 'en' ? ' selected' : '' ?>>English</option>
+                                    <option value="ru"
+                                    <?= locale == 'ru' ? ' selected' : '' ?>>Русский</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-5">
+                                <button type="submit" class="mbtn"><?= _('settings_save_btn') ?></button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getCity(str) {
+        $.post('/api/users/city', {city: str}, function (data) {
+            if (data.response) {
+                var arr = [];
+                data.response.forEach(function (o) {
+                    arr.push('<div><a href="javascript://" onclick="$(\'input[name=city]\').val(this.innerHTML);$(\'.city-items\').html(\'\');">' + o.country + ', ' + o.city + '</a></div>');
+                });
+                arr = arr.splice(0, 3);
+                $('.city-items').html(arr.join(''));
+            }
+        });
+    }
+</script>

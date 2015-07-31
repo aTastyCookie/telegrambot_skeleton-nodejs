@@ -1,0 +1,59 @@
+<div class="center-block">
+
+    <div class="right-block-peer find-block center-block">
+        <form method="get" action="/">
+            <!--input type="text" name="keywords" placeholder="<?= _('find_keywords') ?>" class="search-input"
+                   value="<?= locals.search_keywords || '' ?>"/-->
+
+            <div class="find-peer-country">
+                <div class="find-name-peer"><?= _('find_country') ?></div>
+                <div class="find-peer find-country">
+                    <select name="country" class="find-country-peer">
+                        <?- include('../../partials/countries', {selected: locals.search_country, countryMap: true}) ?>
+                    </select>
+                </div>
+            </div>
+            <div class="find-peer-age">
+                <div class="find-name-peer"><?= _('find_age') ?></div>
+                <div class="find-peer find-age clearfix">
+                    <select name="age_from" class="find-age-from-peer pull-left">
+                        <option value="0"><?= _('find_age_from') ?></option>
+                        <?- include('../../partials/age', {selected: locals.search_age_from}) ?>
+                    </select><span>-</span><select name="age_to" class="find-age-to-peer pull-right">
+                        <option value="0"><?= _('find_age_to') ?></option>
+                        <?- include('../../partials/age', {selected: locals.search_age_to}) ?>
+                    </select>
+                </div>
+            </div>
+            <div class="find-peer-sex">
+                <div class="find-name-peer"><?= _('find_sex') ?></div>
+                <div class="find-peer find-gender">
+                    <label><input type="radio" name="sex"
+                                  value="female"<?= locals.search_sex == 'female' ? ' checked' : '' ?>
+                        /> <?= _('find_sex_female') ?></label>
+                    <label><input type="radio" name="sex"
+                                  value="male"<?= locals.search_sex == 'male' ? ' checked' : '' ?>
+                        /> <?= _('find_sex_male') ?></label>
+                    <label><input type="radio" name="sex"
+                                  value="any"<?= locals.search_sex == 'any' ? ' checked' : '' ?>
+                        /> <?= _('find_sex_any') ?></label>
+                </div>
+            </div>
+            <button class="mbtn find-btn" type="submit"><?= _('find_btn_search') ?><i
+                        class="icon icon-next-submit"></i>
+            </button>
+        </form>
+    </div>
+
+
+    <div class="block-lang">
+        <select onchange="location.href = '/lang/' + this.value;" class="center-block">
+            <option value="en"
+            <?= locale == 'en' ? ' selected' : '' ?>>English</option>
+            <option value="ru"
+            <?= locale == 'ru' ? ' selected' : '' ?>>Русский</option>
+            <option value="uz"
+            <?= locale == 'uz' ? ' selected' : '' ?>>O‘zbek</option>
+        </select>
+    </div>
+</div>

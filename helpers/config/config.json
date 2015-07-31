@@ -1,0 +1,13 @@
+{
+    "mongoose": {
+        "uri": "mongodb://localhost/bot-fun",
+        "options": {}
+    },
+    "port": 8016,
+    "production": {
+        "host": "5.187.7.164:8016"
+    },
+    "development": {
+        "host": "localhost:8016"
+    }
+}

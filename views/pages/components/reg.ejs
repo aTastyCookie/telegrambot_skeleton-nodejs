@@ -1,0 +1,72 @@
+<div class="head-bg"></div>
+<div class="profile center-block">
+    <a href="/" class="back"><i class="icon icon-arrow-left"></i><?= _('back') ?></a>
+
+    <div id="profile-head" class="clearfix">
+        <a class="logo pull-left" href="/"><i class="icon-tg-title"></i><?= _('logo_name') ?></a>
+
+        <div class="pull-right">
+            <a class="login_head_submit_btn" href="javascript://" onclick="$('form').submit();">
+                <span class="sing-up-save"><?= _('sign_up_save') ?></span><i class="icon icon-next-submit"></i>
+            </a>
+        </div>
+    </div>
+    <div id="profile-edit">
+
+        <h3><?= _('sign_up') ?></h3>
+
+        <p class="text-muted"><?= _('sign_up_text') ?></p>
+
+        <div class="username">@<?= user.name ?></div>
+
+        <div class="photos clearfix">
+            <div class="general pull-left"><?- user.photos[0] ? '<img src="' + user.photos[0].preview + '" />' : '<i class="icon icon-camera icon-camera-large"></i>' ?></div>
+            <div class="other pull-right">
+                <? for(var i = 1; i < 5; i++) { ?><div>
+                    <? if (user.photos[i]) { ?>
+                    <img src="<?= user.photos[i].preview ?>" />
+                    <? } else { ?>
+                    <i class="icon icon-camera icon-camera-small"></i>
+                    <? } ?>
+                </div><? } ?>
+            </div>
+        </div>
+        <div class="btn-upload-photo">
+            <button class="mbtn fileinput-button"><span><?= _('reg_upload_photo') ?></span><input id="fileupload" type="file" name="file"></button>
+        </div>
+
+        <form onsubmit="return auth.save(this, <?= user.uid ?>);">
+            <input type="hidden" name="type" value="reg" />
+            <div class="birthday text-center clearfix">
+                <select name="day" class="pull-left day-peer">
+                    <option value="0"><?= _('select_day') ?></option>
+                    <?- include('../../partials/days', {selected: user.birthday ? user.birthday.split('/')[2] : null}) ?>
+                </select><select name="month" class="month-peer">
+                    <option value="0"><?= _('select_month') ?></option>
+                    <?- include('../../partials/months', {selected: user.birthday ? user.birthday.split('/')[1] : null}) ?>
+                </select><select name="year" class="pull-right year-peer">
+                    <option value="0"><?= _('select_year') ?></option>
+                    <?- include('../../partials/years', {selected: user.birthday ? user.birthday.split('/')[0] : null}) ?>
+                </select>
+            </div>
+            <div class="sex-and-country clearfix">
+                <select name="sex" class="pull-left sex-peer">
+                    <option value="0"><?= _('find_sex') ?></option>
+                    <option value="female"<?= (user.sex == 'female' ? ' selected' : '') ?>><?= _('find_sex_female') ?></option>
+                    <option value="male"<?= (user.sex == 'male' ? ' selected' : '') ?>><?= _('find_sex_male') ?></option>
+                </select><select name="country" class="country-peer pull-right">
+                    <?- include('../../partials/countries', {selected: locals.user.country}) ?>
+                </select>
+            </div>
+            <div class="about">
+                <textarea name="description" placeholder="<?= _('placeholder_about_info') ?>"><?= locals.user.description ?></textarea>
+            </div>
+            <div class="button-profile">
+                <button class="mbtn" onclick="$('form').submit();">
+                    <span class="sing-up-save"><?= _('sign_up_save') ?></span> <i class="icon icon-next-submit"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

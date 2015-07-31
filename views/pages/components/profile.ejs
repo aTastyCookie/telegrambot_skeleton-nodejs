@@ -1,0 +1,53 @@
+<div class="head-bg"></div>
+<div class="profile center-block">
+    <a href="/" class="back"><i class="icon icon-arrow-left"></i><?= _('back') ?></a>
+    <div id="profile-head" class="clearfix">
+        <a class="logo pull-left" href="/"><i class="icon-tg-title"></i><?= _('logo_name') ?></a>
+        <div class="pull-right">
+            <? if (userlogin.uid != user.uid) { ?>
+                <? if (userlogin.uid) { ?>
+                <a class="login_head_submit_btn js-click" href="https://telegram.me/<?= user.name ?>" target="_blank">
+                    <?= _('profile_send_message') ?><i class="icon icon-next-submit"></i>
+                </a>
+                <? } else { ?>
+                <a class="login_head_submit_btn" href="/login?ref=1">
+                    <?= _('login_to_send_message') ?> <i class="icon icon-next-submit"></i>
+                </a>
+                <? } ?>
+            <? } else { ?>
+            <a class="login_head_submit_btn" href="/edit">
+                <?= _('profile_edit') ?><i class="icon icon-next-submit"></i>
+            </a>
+            <? } ?>
+        </div>
+    </div>
+    <div id="profile-body">
+        <div class="photo text-center">
+            <? if (user.photos.length) { ?>
+            <a href="<?= user.photos[0].full ?>"><img src="<?= user.photos[0].preview ?>" /></a>
+            <? } else { ?>
+            <img src="/img/nophoto.png" />
+            <? } ?>
+        </div>
+        <div class="username text-center">
+            <? if (userlogin.uid) { ?>
+            <a href="https://telegram.me/<?= user.name ?>" class="js-click" target="_blank">@<?= user.name ?></a>
+            <? } else { ?>
+            <?- _('login_to_see_username') ?>
+            <? } ?>
+        </div>
+        <div class="location text-center text-muted"><i class="icon icon-location"></i> <a href="/?country=<?= user.country ?>&age_from=0&age_to=0&sex=any"><?= _('country_' + user.country) ?></a></div>
+        <div class="profile-info text-muted text-center clearfix">
+            <div class="pull-left"><a href="/?country=0&age_from=<?= user.age ?>&age_to=<?= user.age ?>&sex=any"><?= _('age') ?> <?= user.age ?></a></div>
+            <div class="pull-right"><a href="/?country=0&age_from=0&age_to=0&sex=<?= user.sex ?>"><?= _('profile_sex_' + user.sex) ?></a></div>
+        </div>
+        <? if (user.description) { ?>
+        <div class="description text-muted"><?- utils.parseTags(user.description) ?></div>
+        <? } ?>
+        <? if (user.photos.length > 1) { ?>
+        <div class="photos-profile">
+            <? for(var i = 1; i < 5; i++) { ?><? if (user.photos[i]) { ?><a href="<?= user.photos[i].full ?>"><img src="<?= user.photos[i].preview ?>" /></a><? }} ?>
+        </div>
+        <? } ?>
+    </div>
+</div>

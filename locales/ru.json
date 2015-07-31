@@ -1,0 +1,17 @@
+{
+	"logo_name": "logo_name",
+	"login": "login",
+	"login_text": "Чтобы начать пользоваться ботом его нужно настроить. Для этого напишите сообщение войти нашему боту и ссылка",
+	"link_bot_login": "Нажмите, чтобы авторизоваться",
+	"bot_text_follow_link_to_login": "Перейдите по ссылке ниже, чтобы авторизоваться на сайте:\n\nhttp://%s/?auth=%s",
+	"bot_text_test": "Русский test text",
+	"menu_logout": "menu_logout",
+	"": "",
+	"settings_text_private": "settings_text_private",
+	"settings_text_name": "settings_text_name",
+	"settings_text_country": "settings_text_country",
+	"settings_text_lang": "settings_text_lang",
+	"settings_text_date": "settings_text_date",
+	"settings_text_city": "settings_text_city",
+	"settings_save_btn": "settings_save_btn"
+}

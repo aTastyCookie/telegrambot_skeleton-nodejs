@@ -1,0 +1,14 @@
+{
+	"logo_name": "logo_name",
+	"login": "login",
+	"login_text": "login_text",
+	"link_bot_login": "Нажмите, чтобы авторизоваться",
+	"bot_text_follow_link_to_login": "Follow the link to login:\n\nhttp://%s/?auth=%s",
+	"bot_text_test": "English test text",
+	"menu_logout": "menu_logout",
+	"": "",
+	"settings_text_private": "settings_text_private",
+	"settings_text_name": "settings_text_name",
+	"settings_text_country": "settings_text_country",
+	"settings_text_lang": "settings_text_lang"
+}

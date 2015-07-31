@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <? include ../partials/head ?>
+</head>
+<body>
+<? include ../partials/header ?>
+
+<? if (['login', 'settings'].indexOf(locals.type) != -1) { ?>
+    <?- include('../pages/components/' + locals.type) ?>
+<? } ?>
+
+<? include ../partials/footer ?>
+</body>
+</html>

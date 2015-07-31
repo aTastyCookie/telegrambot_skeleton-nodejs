@@ -1,0 +1,8 @@
+<option value="0"><?= _('find_select_country') ?></option>
+<? countries.forEach(function (country) {
+    if (locals.countryMap) {
+        if (locals.countriesUser.indexOf(country.substr(8)) != -1) { ?>
+<option value="<?= country.substr(8) ?>"<?= (locals.selected == country.substr(8) ? ' selected' : '') ?>><?= _(country) ?></option>
+<? }} else { ?>
+    <option value="<?= country.substr(8) ?>"<?= (locals.selected == country.substr(8) ? ' selected' : '') ?>><?= _(country) ?></option>
+<? }}) ?>

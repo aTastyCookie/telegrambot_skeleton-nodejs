@@ -1,0 +1,82 @@
+<div class="head-bg"></div>
+<div class="profile center-block">
+    <a href="/" class="back"><i class="icon icon-arrow-left"></i><?= _('back') ?></a>
+
+    <div id="profile-head" class="clearfix">
+    <a class="logo pull-left" href="/"><i class="icon-tg-title"></i><?= _('logo_name') ?></a>
+
+    <div class="pull-right">
+    <a class="login_head_submit_btn" href="javascript://" onclick="$('form').submit();">
+        <span class="sing-up-save"><?= _('sign_up_save') ?></span><i class="icon icon-next-submit"></i>
+    </a>
+    </div>
+</div>
+    <div id="profile-edit">
+
+        <h3><?= _('edit_profile') ?></h3>
+
+        <p class="text-muted"><?= _('edit_profile_text') ?></p>
+
+        <div class="username">@<?= user.name ?></div>
+
+        <div class="photos clearfix">
+            <div class="general pull-left" id="photo-1"><?- user.photos[0] ? '<img id="photo-' + user.photos[0]._id + '" src="' + user.photos[0].preview + '" /><span class="icon icon-remove"></span>' : '<i class="icon icon-camera icon-camera-large"></i>' ?></div>
+            <div class="other pull-right">
+            <? for(var i = 1; i < 5; i++) { ?><div id="photo-<?= i ?>">
+            <? if (user.photos[i]) { ?>
+                <img src="<?= user.photos[i].preview ?>" id="photo-<?= user.photos[i]._id ?>" /><span class="icon icon-remove"></span>
+            <? } else { ?>
+                <i class="icon icon-camera icon-camera-small"></i>
+            <? } ?>
+            </div><? } ?>
+            </div>
+        </div>
+        <div class="btn-upload-photo">
+            <span class="mbtn fileinput-button"><span><?= _('reg_upload_photo') ?></span><input id="fileupload" type="file" name="file"></span>
+        </div>
+
+        <form onsubmit="return auth.save(this, <?= user.uid ?>);">
+            <input type="hidden" name="type" value="edit" />
+                <div class="birthday text-center clearfix">
+                    <select name="day" class="pull-left day-peer">
+                        <option value="0"><?= _('select_day') ?></option>
+                    <?- include('../../partials/days', {selected: user.birthday.split('/')[2]}) ?>
+                    </select><select name="month" class="month-peer">
+                    <option value="0"><?= _('select_month') ?></option>
+                <?- include('../../partials/months', {selected: user.birthday.split('/')[1]}) ?>
+                </select><select name="year" class="pull-right year-peer">
+                    <option value="0"><?= _('select_year') ?></option>
+                <?- include('../../partials/years', {selected: user.birthday.split('/')[0]}) ?>
+                </select>
+                </div>
+                <div class="sex-and-country clearfix">
+                    <select name="sex" class="pull-left sex-peer">
+                        <option value="0"><?= _('find_sex') ?></option>
+                        <option value="female"<?= (user.sex == 'female' ? ' selected' : '') ?>><?= _('find_sex_female') ?></option>
+                    <option value="male"<?= (user.sex == 'male' ? ' selected' : '') ?>><?= _('find_sex_male') ?></option>
+                </select><select name="country" class="country-peer pull-right">
+                    <?- include('../../partials/countries', {selected: user.country}) ?>
+                </select>
+            </div>
+            <div class="about">
+                <textarea name="description" placeholder="<?= _('placeholder_about_info') ?>"><?= user.description ?></textarea>
+            </div>
+            <div class="button-profile">
+                <button class="mbtn" onclick="$('form').submit();">
+                    <span class="sing-up-save"><?= _('sign_up_save') ?></span> <i class="icon icon-next-submit"></i></button>
+            </div>
+        </form>
+    </div>
+
+    <div class="settings">
+        <div class="set-item overflow">
+            <div class="switch-peer pull-right">
+                <div class="switch">
+                    <input id="setting_hide_search" onchange="users.hideSearch(this.checked);" <?= user.status ? 'checked' : '' ?> class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="setting_hide_search"></label>
+                </div>
+            </div>
+            <div class="settings-name"><?= _('settings_view_search_profile') ?></div>
+        </div>
+    </div>
+</div>
